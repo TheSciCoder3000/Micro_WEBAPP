@@ -1,0 +1,38 @@
+nav {
+  display: flex;
+  background-color: white;
+  border-bottom: 1px solid rgb(219, 219, 219);
+  box-shadow: 0px 10px 15px -11px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0;
+}
+nav .logo-cont {
+  flex: 1;
+}
+nav .nav-list {
+  display: flex;
+  gap: 2rem;
+  padding: 0.7rem 1rem;
+}
+nav .nav-list .nav-item {
+  list-style: none;
+}
+nav .nav-list .nav-item .nav-link {
+  text-decoration: none;
+  border-radius: 3px;
+  padding: 0.6rem 1rem;
+  color: rgb(164, 164, 164);
+}
+nav .nav-list .nav-item.active {
+  color: black;
+}
+nav .nav-list .nav-item:not(.active):hover {
+  color: white;
+  cursor: pointer;
+}
+nav .nav-list .nav-item:not(.active):hover .nav-link {
+  background-color: rgb(0, 175, 0);
+  color: white;
+}
+nav .accounts-cont {
+  flex: 1;
+}/*# sourceMappingURL=Navbar.css.map */
