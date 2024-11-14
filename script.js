@@ -1,9 +1,12 @@
 let sliderEl = document.querySelector(".slider");
 let nextBtn = document.getElementById("next-1");
 let marginRatio = 0;
+let pageIndicator = 1;
 
 function prevHandler() {
     marginRatio -= 100;
+    pageIndicator -= 1;
+    refreshIndicator()
 
     sliderEl.style.marginLeft = `-${marginRatio}%`
 }
@@ -22,9 +25,17 @@ function nextHandler(e) {
 
     if (isValid) {
         marginRatio += 100;
+        pageIndicator += 1;
+        refreshIndicator()
     
         sliderEl.style.marginLeft = `-${marginRatio}%`
     }
+}
+
+function refreshIndicator() {
+    console.log("testing")
+    let indicatorEl = document.querySelector(".progress-cont");
+    indicatorEl.innerText = pageIndicator + "/5";
 }
 
 
