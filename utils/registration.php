@@ -117,10 +117,8 @@ function insertToDb($conn)
     $co_adviser_last = $_POST['co-adviser-last'];
     $co_adviser_first = $_POST['co-adviser-first'];
     $co_adviser_middle = $_POST['co-adviser-middle'];
-    if (!empty($co_adviser_first) && !empty($co_adviser_middle) && !empty($co_adviser_last)) {
-        $co_adviser_sql = "INSERT INTO CO_ADVISER(LAST_NAME, FIRST_NAME, MIDDLE_NAME, TITLE_ID) VALUES ('$co_adviser_last', '$co_adviser_first', '$co_adviser_middle', $title_id);";
-        $co_adviser_results = sqlsrv_query($conn, $co_adviser_sql);
-    }
+    $co_adviser_sql = "INSERT INTO CO_ADVISER(LAST_NAME, FIRST_NAME, MIDDLE_NAME, TITLE_ID) VALUES ('$co_adviser_last', '$co_adviser_first', '$co_adviser_middle', $title_id);";
+    $co_adviser_results = sqlsrv_query($conn, $co_adviser_sql);
 
 
 
@@ -131,6 +129,6 @@ function insertToDb($conn)
     $contact_results = sqlsrv_query($conn, $contact_sql);
 
     if (!empty($title_results) && !empty($adviser_results) && !empty($contact_results)) {
-        header("Location: success.php");
+        header("Location: confirm.php");
     }
 }

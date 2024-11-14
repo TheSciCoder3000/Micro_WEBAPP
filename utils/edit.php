@@ -135,25 +135,8 @@ function updateDb($conn, $title_id)
     $co_adviser_last = $_POST['co-adviser-last'];
     $co_adviser_first = $_POST['co-adviser-first'];
     $co_adviser_middle = $_POST['co-adviser-middle'];
-    if (!empty($co_adviser_first) && !empty($co_adviser_middle) && !empty($co_adviser_last)) {
-        $co_adviser_sql = "SELECT * FROM CO_ADVISER WHERE TITLE_ID = $title_id;";
-        $co_adviser_query = sqlsrv_query($conn, $co_adviser_sql);
-        $co_adviser_exist = sqlsrv_fetch_array($co_adviser_query);
-
-        if (is_null($co_adviser_exist)) {
-            $co_adviser_sql = "INSERT INTO CO_ADVISER(LAST_NAME, FIRST_NAME, MIDDLE_NAME, TITLE_ID) VALUES ('$co_adviser_last', '$co_adviser_first', '$co_adviser_middle', $title_id);";
-            $co_adviser_results = sqlsrv_query($conn, $co_adviser_sql);
-        } else {
-            $co_adviser_sql = "UPDATE CO_ADVISER SET LAST_NAME = '$co_adviser_last', FIRST_NAME = '$co_adviser_first', MIDDLE_NAME = '$co_adviser_middle' WHERE TITLE_ID = $title_id;";
-        }
-
-
-        $co_adviser_results = sqlsrv_query($conn, $co_adviser_sql);
-    } else {
-        $co_adviser_sql = "DELETE FROM CO_ADVISER WHERE TITLE_ID = $title_id;";
-        $co_adviser_results = sqlsrv_query($conn, $co_adviser_sql);
-    }
-
+    $co_adviser_sql = "UPDATE CO_ADVISER SET LAST_NAME = '$co_adviser_last', FIRST_NAME = '$co_adviser_first', MIDDLE_NAME = '$co_adviser_middle' WHERE TITLE_ID = $title_id;";
+    $co_adviser_query = sqlsrv_query($conn, $co_adviser_sql);
 
 
     $phone_number = $_POST['contact-number'];

@@ -11,7 +11,10 @@
         rel="stylesheet">
     <title>DB Registration Form</title>
 </head>
-<?php require __DIR__ . '/utils/registration.php'; ?>
+<?php
+require __DIR__ . '/utils/registration.php';
+require __DIR__ . '/utils/data.php';
+?>
 
 <body>
     <div class="registration-container">
@@ -191,27 +194,33 @@
                             <label for="program">Program</label>
                             <select name="program" id="program">
                                 <option value disabled selected>---</option>
-                                <option value="MMA">Multimedia Arts</option>
-                                <option value="MEE">Mechanical Engineering</option>
-                                <option value="CPE">Computer Engineering</option>
+                                <?php
+                                foreach ($PROGRAMS as $code => $program) {
+                                    echo "<option value=\"$code\">$program</option>";
+                                }
+                                ?>
                             </select>
                         </div>
                         <div class="field-container">
                             <label for="co-program">Co-Program</label>
                             <select name="co-program" id="co-program">
-                                <option value disabled selected>---</option>
-                                <option value="MMA">Multimedia Arts</option>
-                                <option value="MEE">Mechanical Engineering</option>
-                                <option value="CPE">Computer Engineering</option>
+                                <option value selected>---</option>
+                                <?php
+                                foreach ($PROGRAMS as $code => $program) {
+                                    echo "<option value=\"$code\">$program</option>";
+                                }
+                                ?>
                             </select>
                         </div>
                         <div class="field-container">
                             <label for="subject-study">Subject of Study</label>
                             <select name="subject-study" id="subject-study">
-                                <option value disabled selected>---</option>
-                                <option value="Agriculture">Agriculture</option>
-                                <option value="Technology">Technology</option>
-                                <option value="Biology">Biology</option>
+                                <option value selected>---</option>
+                                <?php
+                                foreach ($SUBJECTS as $subject) {
+                                    echo "<option value=\"$subject\">$subject</option>";
+                                }
+                                ?>
                             </select>
                         </div>
                         <div class="form-control-container">
