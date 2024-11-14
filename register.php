@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/Navbar.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -17,6 +18,15 @@ require __DIR__ . '/utils/data.php';
 ?>
 
 <body>
+    <nav>
+        <div class="logo-cont"></div>
+        <ul class="nav-list">
+            <li class="nav-item"><a href="./index.php" class="nav-link">Dashboard</a></li>
+            <li class="nav-item active">Register</li>
+            <li class="nav-item"><a href="./reports.php" class="nav-link">Reports</a></li>
+        </ul>
+        <div class="accounts-cont"></div>
+    </nav>
     <div class="registration-container">
         <div class="forms-container">
             <div class="form-header">
