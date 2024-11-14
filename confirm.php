@@ -43,8 +43,14 @@ $contact = sqlsrv_fetch_array($contactResults);
         <img src="./img/checklist.svg" alt="">
     </div>
     <div class="research-summary">
-        <h1>Application Summary</h1>
-        <p>Please verify your registration details and contact your adviser for any issues</p>
+        <div class="summary-header">
+            <h1>Application Summary</h1>
+            <p>
+                Please verify your registration details. Choose "Edit" if there
+                are any other changes you would like to make otherwise,
+                choose "Save" to confirm registration
+            </p>
+        </div>
         <div class="info-cont basic-info-container">
             <h2>Basic Information</h2>
             <p>

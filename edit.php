@@ -236,7 +236,7 @@ $data = getData($conn);
                         </div>
                         <div class="form-control-container">
                             <button type="button" class="form-control" onclick="prevHandler()">Prev</button>
-                            <input type="submit" class="form-control affirm" value="SUBMIT" name="submit">
+                            <input type="submit" class="form-control affirm" value="SAVE" name="submit">
                         </div>
                     </div>
 

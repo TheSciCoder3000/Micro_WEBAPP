@@ -10,6 +10,17 @@ body {
     margin: 0;
     font-size: 17px;
 
+    .summary-header {
+        h1 {
+            font-size: 3em;
+        }
+
+        p {
+            margin-bottom: 2.5rem;
+        }
+    }
+
+
     button {
         margin-top: 1rem;
         padding: 0.7rem 1rem;
