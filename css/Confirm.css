@@ -1,0 +1,40 @@
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  width: 100vw;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  padding: 2rem 6rem;
+  margin: 0;
+  font-size: 17px;
+}
+body button {
+  margin-top: 1rem;
+  padding: 0.7rem 1rem;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+body button:hover {
+  background-color: rgb(0, 163, 0);
+}
+body .img-container {
+  display: flex;
+  justify-content: center;
+  height: 20rem;
+}
+body .research-summary .info-cont {
+  border: 1px solid rgba(0, 0, 0, 0.187);
+  border-radius: 7px;
+  margin: 1rem 0;
+  padding: 0.7rem 1rem;
+  box-shadow: 0px 5px 10px -3px rgba(0, 0, 0, 0.1);
+}
+body .research-summary .info-cont h2 {
+  margin: 0.7rem 0;
+  margin-bottom: 1.5rem;
+}/*# sourceMappingURL=Confirm.css.map */

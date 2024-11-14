@@ -1,0 +1,312 @@
+@font-face {
+  font-family: "galliardroman";
+  src: url("../fonts/galliard_roman-webfont.woff") format("woff"), url("../fonts/galliard_roman-webfont.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+* {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+}
+
+h1 {
+  margin-bottom: 3rem;
+  font-size: 2.5em;
+  font-weight: 500;
+}
+@media (max-width: 799px) {
+  h1 {
+    color: #eee;
+  }
+}
+@media (max-width: 499px) {
+  h1 {
+    font-size: 2em;
+  }
+}
+
+h2 {
+  font-size: 1.5em;
+  font-weight: 400;
+  margin-bottom: 0.7rem;
+}
+@media (max-width: 799px) {
+  h2 {
+    color: #eee;
+  }
+}
+@media (max-width: 499px) {
+  h2 {
+    font-size: 1.3em;
+  }
+}
+
+label {
+  font-size: 0.9em;
+  display: block;
+  margin-bottom: 0.5rem;
+  color: rgb(128, 128, 128);
+}
+@media (max-width: 799px) {
+  label {
+    color: rgb(172, 172, 172);
+  }
+}
+
+button {
+  padding: 0.65rem 1.5rem;
+  border-radius: 7px;
+  font-weight: 600;
+}
+
+input, select {
+  font-size: 0.9em;
+  border: 2px solid #e4e4e8;
+  border-radius: 5px;
+  padding: 0.6rem 0.8rem;
+}
+input:focus, select:focus {
+  outline: none;
+  border: 2px solid rgb(0, 154, 0);
+}
+input::-moz-placeholder, select::-moz-placeholder {
+  color: rgb(207, 207, 207);
+}
+input::placeholder, select::placeholder {
+  color: rgb(207, 207, 207);
+}
+
+.error-msg {
+  background-color: rgb(255, 212, 212);
+  border-left: 2px solid rgb(255, 75, 75);
+  padding: 2rem 1.5rem;
+  border-radius: 5px;
+}
+.error-msg h5 {
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: rgb(194, 1, 1);
+}
+.error-msg p {
+  color: rgba(189, 0, 0, 0.687);
+}
+.error-msg b {
+  font-weight: bold;
+}
+
+.registration-container {
+  display: flex;
+  gap: 15px;
+  box-sizing: border-box;
+  height: 100vh;
+  padding: 0.75rem;
+  overflow: hidden;
+}
+.registration-container .form-header {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 5rem;
+}
+.registration-container .form-header .logo-container .dlsud-logo-img {
+  height: 6rem;
+  aspect-ratio: 1/1;
+}
+@media (max-width: 799px) {
+  .registration-container .form-header .logo-container .dlsud-logo-img {
+    height: 4rem;
+  }
+}
+.registration-container .form-header .header-content {
+  color: rgb(0, 93, 0);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.registration-container .form-header .header-content h1 {
+  font-family: "galliardroman";
+  font-weight: 400;
+  font-size: 3vw;
+  margin: 0;
+}
+@media (max-width: 799px) {
+  .registration-container .form-header .header-content h1 {
+    font-size: 4vw;
+  }
+}
+.registration-container .form-header .header-content h2 {
+  font-family: "galliardroman";
+  font-size: 2vw;
+  letter-spacing: 0.9em;
+  margin: 0;
+}
+@media (max-width: 799px) {
+  .registration-container .form-header .header-content h2 {
+    font-size: 2.5vw;
+  }
+}
+.registration-container .img-container {
+  border-radius: 12px;
+  overflow: hidden;
+  flex: 0.9;
+}
+@media (max-width: 799px) {
+  .registration-container .img-container {
+    flex: 0;
+  }
+}
+.registration-container .img-container img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media (max-width: 799px) {
+  .registration-container .img-container img {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: -1;
+    filter: brightness(80%);
+  }
+}
+.registration-container .forms-container {
+  padding: 3rem 5rem;
+  box-sizing: border-box;
+  width: 52vw;
+  flex: 1;
+  overflow: auto;
+}
+.registration-container .forms-container::-webkit-scrollbar {
+  width: 5px;
+}
+.registration-container .forms-container::-webkit-scrollbar-button {
+  background: #ccc;
+}
+.registration-container .forms-container::-webkit-scrollbar-thumb {
+  background: rgba(238, 238, 238, 0.1921568627);
+}
+@media (max-width: 799px) {
+  .registration-container .forms-container {
+    background: rgba(255, 255, 255, 0.188);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(10.5px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+}
+@media (max-width: 499px) {
+  .registration-container .forms-container {
+    padding: 3rem 2rem;
+  }
+}
+.registration-container .forms-container form {
+  overflow-x: hidden;
+}
+.registration-container .forms-container form .full {
+  width: 100%;
+}
+.registration-container .forms-container form .flex {
+  display: flex;
+  gap: 2rem;
+}
+@media (max-width: 799px) {
+  .registration-container .forms-container form .flex {
+    gap: 0.7rem;
+  }
+}
+@media (max-width: 599px) {
+  .registration-container .forms-container form .flex {
+    flex-direction: column;
+  }
+}
+.registration-container .forms-container form .flex div {
+  flex: 1;
+}
+.registration-container .forms-container form .slider {
+  width: 500%;
+  transition: margin-left 0.15s ease-in-out;
+  display: flex;
+}
+.registration-container .forms-container form .slider .category-container {
+  width: 20%;
+}
+.registration-container .forms-container form .slider .category-container .category-header {
+  margin-bottom: 3rem;
+}
+.registration-container .forms-container form .slider .category-container .category-header p {
+  color: #707070;
+  font-weight: 300;
+}
+@media (max-width: 799px) {
+  .registration-container .forms-container form .slider .category-container .category-header p {
+    color: #c8c8c8;
+  }
+}
+.registration-container .forms-container form .slider .category-container .authors-control {
+  display: flex;
+  justify-content: flex-end;
+}
+.registration-container .forms-container form .slider .category-container .authors-control button {
+  border: 1px solid rgb(199, 199, 199);
+  background-color: white;
+  color: rgb(180, 180, 180);
+  cursor: pointer;
+}
+.registration-container .forms-container form .slider .category-container .authors-control button:hover {
+  background-color: rgb(235, 235, 235);
+}
+.registration-container .forms-container form .slider .category-container .field-container {
+  margin-bottom: 1.5rem;
+}
+.registration-container .forms-container form .slider .category-container .field-container .label-container {
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.registration-container .forms-container form .slider .category-container .field-container .label-container label {
+  margin: 0;
+}
+.registration-container .forms-container form .slider .category-container .field-container .label-container .remove-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.registration-container .forms-container form .slider .category-container .field-container .label-container .remove-btn svg {
+  fill: rgba(96, 96, 96, 0.502);
+  height: 1rem;
+  aspect-ratio: 1/1;
+}
+.registration-container .forms-container form .slider .category-container .field-container .label-container .remove-btn svg:hover {
+  fill: rgba(96, 96, 96, 0.712);
+}
+.registration-container .forms-container form .form-control-container {
+  margin-top: 3rem;
+  display: flex;
+  gap: 1rem;
+}
+.registration-container .forms-container form .form-control-container .form-control {
+  color: rgb(153, 153, 153);
+  border: 2px solid rgb(228, 228, 228);
+  cursor: pointer;
+  background-color: white;
+}
+.registration-container .forms-container form .form-control-container .form-control.affirm {
+  background-color: green;
+  border: 1px solid green;
+  color: white;
+}
+.registration-container .forms-container form .form-control-container .form-control.affirm:hover {
+  background-color: rgb(0, 109, 0);
+}
+.registration-container .forms-container form .form-control-container .form-control:hover {
+  background-color: rgb(249, 249, 249);
+}/*# sourceMappingURL=styles.css.map */
