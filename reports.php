@@ -80,7 +80,7 @@ $conn = sqlsrv_connect($serverName, $connectionOptions);
         </div>
     </div>
 
-    <!-- ========================== ALL TABLE ========================== -->
+    <!-- ========================== TITLE TABLE ========================== -->
     <div class="reports-cont">
         <div class="table-cont">
             <div class="header-container">
