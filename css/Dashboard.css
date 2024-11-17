@@ -1,4 +1,54 @@
 * {
   margin: 0;
   font-family: "Roboto", sans-serif;
+}
+
+body .dashboard-cont {
+  margin: 3rem 5rem;
+}
+body .dashboard-cont h1 {
+  margin-bottom: 2rem;
+}
+body .dashboard-cont .navigation-panels {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+}
+body .dashboard-cont .navigation-panels .panel-cont {
+  display: flex;
+  flex-direction: column;
+  height: 30rem;
+  width: 20rem;
+  border: 1px solid rgba(128, 128, 128, 0.162);
+  padding: 2rem 1.25rem;
+  border-radius: 10px;
+  box-shadow: 2px 5px 10px rgba(45, 45, 45, 0.09);
+  overflow: hidden;
+}
+body .dashboard-cont .navigation-panels .panel-cont img {
+  height: 20rem;
+  -o-object-fit: contain;
+     object-fit: contain;
+  margin-bottom: 1rem;
+}
+body .dashboard-cont .navigation-panels .panel-cont h2 {
+  flex: 1;
+  margin-bottom: 0.5rem;
+}
+body .dashboard-cont .navigation-panels .panel-cont p {
+  flex: 1;
+  font-size: 0.9em;
+  color: gray;
+  margin-bottom: 1rem;
+}
+body .dashboard-cont .navigation-panels .panel-cont button {
+  flex: 0.5;
+  background-color: green;
+  border: none;
+  color: white;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+}
+body .dashboard-cont .navigation-panels .panel-cont button:hover {
+  background-color: rgb(0, 146, 0);
 }/*# sourceMappingURL=Dashboard.css.map */

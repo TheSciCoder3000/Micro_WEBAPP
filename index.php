@@ -18,6 +18,29 @@
         </ul>
         <div class="accounts-cont"></div>
     </nav>
+    <div class="dashboard-cont">
+        <h1>Dashboard</h1>
+        <div class="navigation-panels">
+            <div class="panel-cont">
+                <img src="./img/search.svg" alt="search-svg">
+                <h2>Search</h2>
+                <p>Search for existing Thesis titles available in the database</p>
+                <button class="panel-btn">Search</button>
+            </div>
+            <div class="panel-cont">
+                <img src="./img/forms.svg" alt="search-svg">
+                <h2>Register</h2>
+                <p>Register your ongoing Thesis Project to the University Database</p>
+                <button class="panel-btn" onclick="window.location.href = './register.php';">Register</button>
+            </div>
+            <div class="panel-cont">
+                <img src="./img/reports.svg" alt="search-svg">
+                <h2>Reports</h2>
+                <p>View and analyze the public Thesis reports</p>
+                <button class="panel-btn" onclick="window.location.href = './reports.php';">Reports</button>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
