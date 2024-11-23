@@ -6,6 +6,16 @@
 body {
   background-color: rgb(248, 248, 248);
 }
+body .filter-select-cont select {
+  height: 2rem;
+  padding: 0.25rem 0.5rem;
+}
+body .reports-query-cont {
+  margin: 2rem 5rem;
+}
+body .reports-query-cont label {
+  display: block;
+}
 body .reports-cont {
   background-color: white;
   border-radius: 10px;
@@ -14,23 +24,25 @@ body .reports-cont {
 }
 body .reports-cont .table-cont .header-container {
   padding: 1.5rem 1.5rem;
-}
-body .reports-cont .table-cont .header-container h3 {
-  color: rgb(50, 50, 50);
-  font-size: 1.3em;
-}
-body .reports-cont .table-cont .header-container p {
-  font-size: 0.8em;
-  color: rgb(150, 150, 150);
-  margin-top: 0.6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 body .reports-cont .table-cont .header-container .table-header {
   display: flex;
   gap: 1rem;
   align-items: center;
 }
+body .reports-cont .table-cont .header-container .table-header h3 {
+  font-size: 1.775em;
+}
+body .reports-cont .table-cont .header-container .table-header p {
+  font-size: 0.9em;
+  color: rgb(150, 150, 150);
+  margin-top: 0.6rem;
+}
 body .reports-cont .table-cont .header-container .table-header .count-cont {
-  font-size: 0.7em;
+  font-size: 0.8em;
   background-color: rgba(0, 219, 0, 0.177);
   color: green;
   font-weight: 600;

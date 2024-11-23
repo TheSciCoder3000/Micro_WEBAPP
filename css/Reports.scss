@@ -6,6 +6,22 @@
 body {
     background-color: rgb(248, 248, 248);
 
+    .filter-select-cont {
+
+        select {
+            height: 2rem;
+            padding: 0.25rem 0.5rem;
+        }
+    }
+
+    .reports-query-cont {
+        margin: 2rem 5rem;
+
+        label {
+            display: block;
+        }
+    }
+
     .reports-cont {
         background-color: white;
         border-radius: 10px;
@@ -16,25 +32,28 @@ body {
 
             .header-container {
                 padding: 1.5rem 1.5rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
 
-                h3 {
-                    color: rgb(50, 50, 50);
-                    font-size: 1.3em;
-                }
-
-                p {
-                    font-size: 0.8em;
-                    color: rgb(150, 150, 150);
-                    margin-top: 0.6rem;
-                }
 
                 .table-header {
                     display: flex;
                     gap: 1rem;
                     align-items: center;
 
+                    h3 {
+                        font-size: 1.775em;
+                    }
+
+                    p {
+                        font-size: 0.9em;
+                        color: rgb(150, 150, 150);
+                        margin-top: 0.6rem;
+                    }
+
                     .count-cont {
-                        font-size: 0.7em;
+                        font-size: 0.8em;
                         background-color: rgba(0, 219, 0, 0.177);
                         color: green;
                         font-weight: 600;

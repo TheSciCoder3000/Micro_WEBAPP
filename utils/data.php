@@ -2,11 +2,12 @@
 
 $PROGRAMS = [
     'CPE' => 'Bachelor of Science in Computer Engineering',
-    'BSA' => 'Bachelor of Science in Accountancy',
     'MEE' => 'Bachelor of Science in Mechanical Engineering',
     'ECE' => 'Bachelor of Science in Electrical Engineering',
     'IEE' => 'Bachelor of Science in Industrial Engineering',
+    'CE' => 'Bachelor of Science in Civil Engineering',
     'MMA' => 'Bachelor of Mechanical Engineering',
+    'ARC' => 'Bachelor of Science in Architecture',
 ];
 
 $SUBJECTS = [

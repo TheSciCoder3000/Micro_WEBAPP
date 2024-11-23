@@ -9,6 +9,9 @@
 </head>
 
 <?php
+require __DIR__ . '/utils/data.php';
+require __DIR__ . '/utils/report_utils.php';
+
 $serverName = "NeurosLaptop\SQLEXPRESS";
 
 $connectionOptions = [
@@ -18,7 +21,20 @@ $connectionOptions = [
 ];
 
 $conn = sqlsrv_connect($serverName, $connectionOptions);
+$filter_type = 'all';
+if (isset($_POST['filter-type'])) $filter_type = $_POST['filter-type'];
+$filter_value = null;
 
+
+if (isset($_POST['action'])) {
+    if ($_POST['action'] == 'FILTER' && $filter_type != 'all') {
+        if ($filter_type != null) {
+            $filter_value = getFilterValue($filter_type, $_POST);
+        }
+    }
+}
+
+$filter_data = filter_query($conn, $filter_type, $filter_value);
 ?>
 
 <body>
@@ -32,46 +48,93 @@ $conn = sqlsrv_connect($serverName, $connectionOptions);
         <div class="accounts-cont"></div>
     </nav>
 
+    <form class="reports-query-cont" id="filter-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <div class="filter-select-cont">
+            <select name="filter-type" id="filter-type-select" onchange="onFilterSelectChange(event)">
+                <?php
+                $filter_types = ['all', 'title', 'program', 'author', 'adviser'];
+
+                foreach ($filter_types as $type) {
+                    $formatted_type = ucfirst($type);
+                    if ($filter_type == $type) echo "<option selected value=\"$type\">{$formatted_type}</option>";
+                    else echo "<option value=\"$type\">{$formatted_type}</option>";
+                }
+                ?>
+            </select>
+        </div>
+        <div style="display: <?php echo $filter_type == 'title' ? 'block' : 'none'; ?>;">
+            <label for="title">Title: </label>
+            <input value="<?php echo htmlspecialchars($filter_value ? $filter_value[$filter_type] : ''); ?>" name="title" id="" class="title-input"></input>
+        </div>
+        <div style="display: <?php echo $filter_type == 'author' ? 'block' : 'none'; ?>;">
+            <label for="author">Author:</label>
+            <div>
+                <input value="<?php if (isset($filter_value['FIRST_NAME'])) echo $filter_value['FIRST_NAME']; ?>" type="text" name="author-fn" placeholder="First Name">
+                <input value="<?php if (isset($filter_value['LAST_NAME'])) echo $filter_value['LAST_NAME']; ?>" type="text" name="author-ln" placeholder="Last Name">
+            </div>
+        </div>
+        <div style="display: <?php echo $filter_type == 'adviser' ? 'block' : 'none'; ?>;">
+            <label for="author">Adviser:</label>
+            <div>
+                <input value="<?php if (isset($filter_value['FIRST_NAME'])) echo $filter_value['FIRST_NAME']; ?>" type="text" name="adviser-fn" placeholder="First Name">
+                <input value="<?php if (isset($filter_value['LAST_NAME'])) echo $filter_value['LAST_NAME']; ?>" type="text" name="adviser-ln" placeholder="Last Name">
+            </div>
+        </div>
+        <div style="display: <?php echo $filter_type == 'program' ? 'block' : 'none'; ?>;">
+            <label for="program">Program:</label>
+            <select name="program">
+                <option value <?php echo is_null($filter_value) ? '' : 'selected' ?>>Select Program</option>
+                <?php
+                $filter_value = $filter_value[$filter_type];
+                foreach ($PROGRAMS as $key => $program) {
+                    if ($filter_value == $key) echo "<option selected value=\"$key\">$program</option>";
+                    else echo "<option value=\"$key\">$program</option>";
+                }
+                ?>
+            </select>
+        </div>
+        <div style="display: <?php echo $filter_type != 'all' ? 'block' : 'none'; ?>;" class="form-actions">
+            <input type="submit" value="FILTER" name="action" class="filter-btn">
+            <input type="submit" value="RESET" name="action" class="cancel-btn">
+        </div>
+    </form>
+
     <!-- ========================== ALL TABLE ========================== -->
     <div class="reports-cont">
         <div class="table-cont">
             <div class="header-container">
-                <div class="table-header">
-                    <h3>ALL</h3>
-                    <?php
-                    $all_count_sql = "SELECT COUNT(TITLE_ID) as ALL_COUNT FROM TITLE";
-                    $all_count_query = sqlsrv_query($conn, $all_count_sql);
-                    $all_count_result = sqlsrv_fetch_array($all_count_query);
-                    echo "<div class=\"count-cont\">{$all_count_result['ALL_COUNT']} Total</div>";
-                    ?>
+                <div class="header-info">
+                    <div class="table-header">
+                        <h3><?php echo ucwords($filter_type); ?></h3>
+                        <?php
+                        $filter_count = count($filter_data);
+                        echo "<div class=\"count-cont\">{$filter_count} Total</div>";
+                        ?>
+                    </div>
+                    <p>Displays all the Thesis entries with the first author</p>
                 </div>
-                <p>Displays all the Thesis entries with the first author</p>
             </div>
             <table>
                 <thead>
                     <tr>
-                        <th>Title ID</th>
-                        <th>Title Name</th>
-                        <th>Program</th>
-                        <th>Author Last Name</th>
-                        <th>Author First Name</th>
+                        <?php
+                        if ($filter_type) {
+                            foreach (getFilterColumns($filter_type) as $filter_key => $filter_column) {
+                                echo "<th>$filter_column</th>";
+                            }
+                        }
+                        ?>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    $sql = "SELECT t.TITLE_ID, t.TITLE_NAME, t.PROGRAM, a.LAST_NAME, a.FIRST_NAME FROM TITLE AS t INNER JOIN AUTHOR AS a ON t.TITLE_ID = a.TITLE_ID INNER JOIN (SELECT TITLE_ID, MIN(AUTHOR_ID) AS FIRST_ID FROM AUTHOR GROUP BY TITLE_ID) AS FA ON a.TITLE_ID = FA.TITLE_ID AND a.AUTHOR_ID = FA.FIRST_ID;";
-                    $title_results = sqlsrv_query($conn, $sql);
-                    $count = 0;
-                    while ($row = sqlsrv_fetch_array($title_results)) {
-                        $count = $count + 1;
-                        $title_name = $row['TITLE_NAME'];
-                        echo "<tr class=\"table-row\">
-                                <td>{$row['TITLE_ID']}</td>
-                                <td class=\"td-title-name\">{$row['TITLE_NAME']}</td>
-                                <td>{$row['PROGRAM']}</td>
-                                <td>{$row['LAST_NAME']}</td>
-                                <td>{$row['FIRST_NAME']}</td>
-                            </tr>";
+                    foreach ($filter_data as $row) {
+                        echo "<tr class=\"table-row\">";
+                        foreach (getFilterColumns($filter_type) as $filter_key => $filter_column) {
+                            if ($filter_key == 'TITLE_NAME') echo "<td class=\"td-title-name\">{$row[$filter_key]}</td>";
+                            else echo "<td>{$row[$filter_key]}</td>";
+                        }
+                        echo "</tr>";
                     }
                     ?>
 
@@ -80,193 +143,12 @@ $conn = sqlsrv_connect($serverName, $connectionOptions);
         </div>
     </div>
 
-    <!-- ========================== TITLE TABLE ========================== -->
-    <div class="reports-cont">
-        <div class="table-cont">
-            <div class="header-container">
-                <div class="table-header">
-                    <h3>TITLE</h3>
-                    <?php
-                    $all_count_sql = "SELECT COUNT(TITLE_ID) as ALL_COUNT FROM TITLE";
-                    $all_count_query = sqlsrv_query($conn, $all_count_sql);
-                    $all_count_result = sqlsrv_fetch_array($all_count_query);
-                    echo "<div class=\"count-cont\">{$all_count_result['ALL_COUNT']} Total</div>";
-                    ?>
-                </div>
-                <p>Displays all the Thesis entries with the first author</p>
-            </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Title ID</th>
-                        <th>Title Name</th>
-                        <th>Program</th>
-                        <th>Author Last Name</th>
-                        <th>Author First Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $sql = "SELECT t.TITLE_ID, t.TITLE_NAME, t.PROGRAM, a.LAST_NAME, a.FIRST_NAME FROM TITLE AS t INNER JOIN AUTHOR AS a ON t.TITLE_ID = a.TITLE_ID INNER JOIN (SELECT TITLE_ID, MIN(AUTHOR_ID) AS FIRST_ID FROM AUTHOR GROUP BY TITLE_ID) AS FA ON a.TITLE_ID = FA.TITLE_ID AND a.AUTHOR_ID = FA.FIRST_ID;";
-                    $title_results = sqlsrv_query($conn, $sql);
-                    $count = 0;
-                    while ($row = sqlsrv_fetch_array($title_results)) {
-                        $count = $count + 1;
-                        $title_name = $row['TITLE_NAME'];
-                        echo "<tr class=\"table-row\">
-                                <td>{$row['TITLE_ID']}</td>
-                                <td class=\"td-title-name\">{$row['TITLE_NAME']}</td>
-                                <td>{$row['PROGRAM']}</td>
-                                <td>{$row['LAST_NAME']}</td>
-                                <td>{$row['FIRST_NAME']}</td>
-                            </tr>";
-                    }
-                    ?>
-
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <!-- ========================== PROGRAM TABLE ========================== -->
-    <div class="reports-cont">
-        <div class="table-cont">
-            <div class="header-container">
-                <div class="table-header">
-                    <h3>PROGRAM</h3>
-                    <?php
-                    $program_count_sql = "SELECT COUNT(TITLE_ID) as ALL_COUNT FROM TITLE";
-                    $program_count_query = sqlsrv_query($conn, $program_count_sql);
-                    $program_count_result = sqlsrv_fetch_array($program_count_query);
-                    echo "<div class=\"count-cont\">{$program_count_result['ALL_COUNT']} Total</div>";
-                    ?>
-                </div>
-                <p>Displays all the thesis titles and its program code</p>
-            </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Program</th>
-                        <th>Title ID</th>
-                        <th>Title Name</th>
-                        <th>Author Last Name</th>
-                        <th>Author First Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $sql = "SELECT t.TITLE_ID, t.TITLE_NAME, t.PROGRAM, a.LAST_NAME, a.FIRST_NAME FROM TITLE AS t INNER JOIN AUTHOR AS a ON t.TITLE_ID = a.TITLE_ID INNER JOIN (SELECT TITLE_ID, MIN(AUTHOR_ID) AS FIRST_ID FROM AUTHOR GROUP BY TITLE_ID) AS FA ON a.TITLE_ID = FA.TITLE_ID AND a.AUTHOR_ID = FA.FIRST_ID;";
-                    $title_results = sqlsrv_query($conn, $sql);
-                    $count = 0;
-                    while ($row = sqlsrv_fetch_array($title_results)) {
-                        $count = $count + 1;
-                        $title_name = $row['TITLE_NAME'];
-                        echo "<tr class=\"table-row\">
-                                <td>{$row['PROGRAM']}</td>
-                                <td>{$row['TITLE_ID']}</td>
-                                <td class=\"td-title-name\">{$row['TITLE_NAME']}</td>
-                                <td>{$row['LAST_NAME']}</td>
-                                <td>{$row['FIRST_NAME']}</td>
-                            </tr>";
-                    }
-                    ?>
-
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <!-- ========================== AUTHOR TABLE ========================== -->
-    <div class="reports-cont">
-        <div class="table-cont">
-            <div class="header-container">
-                <div class="table-header">
-                    <h3>AUTHORS</h3>
-                    <?php
-                    $author_count_sql = "SELECT COUNT(TITLE_ID) as ALL_COUNT FROM AUTHOR";
-                    $author_count_query = sqlsrv_query($conn, $author_count_sql);
-                    $author_count_result = sqlsrv_fetch_array($author_count_query);
-                    echo "<div class=\"count-cont\">{$author_count_result['ALL_COUNT']} Total</div>";
-                    ?>
-                </div>
-                <p>Displays all the authors and their thesis</p>
-            </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Title ID</th>
-                        <th>Title Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $author_sql = "SELECT A.FIRST_NAME, A.LAST_NAME, T.TITLE_ID, T.TITLE_NAME 
-                            FROM AUTHOR AS A
-                            INNER JOIN TITLE AS T
-                            ON T.TITLE_ID = A.TITLE_ID;";
-                    $author_query = sqlsrv_query($conn, $author_sql);
-                    while ($row = sqlsrv_fetch_array($author_query)) {
-                        echo "<tr class=\"table-row\">
-                                <td>{$row['FIRST_NAME']}</td>
-                                <td>{$row['LAST_NAME']}</td>
-                                <td>{$row['TITLE_ID']}</td>
-                                <td class=\"td-title-name\">{$row['TITLE_NAME']}</td>
-                            </tr>";
-                    }
-                    ?>
-
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <!-- ========================== ADVISER TABLE ========================== -->
-    <div class="reports-cont">
-        <div class="table-cont">
-            <div class="header-container">
-                <div class="table-header">
-                    <h3>ADVISERS</h3>
-                    <?php
-                    $adviser_count_sql = "SELECT COUNT(TITLE_ID) as ALL_COUNT FROM ADVISER";
-                    $adviser_count_query = sqlsrv_query($conn, $adviser_count_sql);
-                    $adviser_count_result = sqlsrv_fetch_array($adviser_count_query);
-                    echo "<div class=\"count-cont\">{$adviser_count_result['ALL_COUNT']} Total</div>";
-                    ?>
-                </div>
-                <p>Displays all the advisers and their thesis</p>
-            </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Title ID</th>
-                        <th>Title Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $author_sql = "SELECT A.FIRST_NAME, A.LAST_NAME, T.TITLE_ID, T.TITLE_NAME 
-                            FROM ADVISER AS A
-                            INNER JOIN TITLE AS T
-                            ON T.TITLE_ID = A.TITLE_ID;";
-                    $author_query = sqlsrv_query($conn, $author_sql);
-                    while ($row = sqlsrv_fetch_array($author_query)) {
-                        echo "<tr class=\"table-row\">
-                                <td>{$row['FIRST_NAME']}</td>
-                                <td>{$row['LAST_NAME']}</td>
-                                <td>{$row['TITLE_ID']}</td>
-                                <td class=\"td-title-name\">{$row['TITLE_NAME']}</td>
-                            </tr>";
-                    }
-                    ?>
-
-                </tbody>
-            </table>
-        </div>
-    </div>
+    <script>
+        function onFilterSelectChange(e) {
+            let filterFormEl = document.getElementById('filter-form');
+            filterFormEl.submit();
+        }
+    </script>
 </body>
 
 </html>
