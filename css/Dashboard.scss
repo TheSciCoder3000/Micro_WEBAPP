@@ -7,8 +7,34 @@ body {
     .dashboard-cont {
         margin: 3rem 5rem;
 
+        .dash-bkg {
+            z-index: -1;
+            position: absolute;
+            top: calc(0px - 3rem);
+            bottom: 0;
+            left: calc(0px - 5rem);
+            right: 0;
+            filter: blur(3px);
+
+            img {
+                height: 100%;
+                width: 100%;
+            }
+
+            .bkg-overlay {
+                position: absolute;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: green;
+                opacity: 50%;
+            }
+        }
+
         h1 {
+            font-size: 2.25em;
             margin-bottom: 2rem;
+            color: white;
         }
 
         .navigation-panels {
@@ -26,6 +52,7 @@ body {
                 border-radius: 10px;
                 box-shadow: 2px 5px 10px rgba(45, 45, 45, 0.09);
                 overflow: hidden;
+                background-color: white;
 
                 img {
                     height: 20rem;

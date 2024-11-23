@@ -19,6 +19,10 @@
         <div class="accounts-cont"></div>
     </nav>
     <div class="dashboard-cont">
+        <div class="dash-bkg">
+            <img src="./img/dash-bkg.png" alt="" class="dash-bkg-img">
+            <div class="bkg-overlay"></div>
+        </div>
         <h1>Dashboard</h1>
         <div class="navigation-panels">
             <div class="panel-cont">
