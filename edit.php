@@ -65,16 +65,10 @@ $data = getData($conn);
                             $conn = connectDb();
 
                             $title = $_POST['thesis-title'];
-                            $thesi = checkTitle($conn, $title);
                             if (empty($_POST['thesis-title'])) {
                                 echo "<div class=\"error-msg\">
                                         <h5>NO THESIS TITLE</h5>
                                         <p>There is no thesis title entered.</p>
-                                    </div>";
-                            } else if (count($thesi) > 0) {
-                                echo "<div class=\"error-msg\">
-                                        <h5>IDENTICAL THESIS TITLE</h5>
-                                        <p>There is a similar thesis title, <b>$title</b>, saved within the database. Please change your title acccordingly.</p>
                                     </div>";
                             } else if (!isCoAdviserValid()) {
                                 echo "<div class=\"error-msg\">
