@@ -6,15 +6,60 @@
 body {
   background-color: rgb(248, 248, 248);
 }
-body .filter-select-cont select {
-  height: 2rem;
-  padding: 0.25rem 0.5rem;
-}
 body .reports-query-cont {
   margin: 2rem 5rem;
 }
+body .reports-query-cont .filter-select-cont {
+  margin-bottom: 1rem;
+}
+body .reports-query-cont .filter-select-cont select {
+  height: 2rem;
+  padding: 0.25rem 0.5rem;
+}
 body .reports-query-cont label {
   display: block;
+  margin-bottom: 0.5rem;
+}
+body .reports-query-cont input:not(input[type=submit]) {
+  font-size: 0.9em;
+  border: 2px solid #e4e4e8;
+  border-radius: 5px;
+  padding: 0.4rem 0.8rem;
+  outline: none;
+  margin-bottom: 1rem;
+  width: 20rem;
+}
+body .reports-query-cont input:not(input[type=submit])::-moz-placeholder {
+  color: rgb(207, 207, 207);
+}
+body .reports-query-cont input:not(input[type=submit])::placeholder {
+  color: rgb(207, 207, 207);
+}
+body .reports-query-cont select {
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  border: 2px solid #e4e4e8;
+}
+body .reports-query-cont .form-actions input[type=submit] {
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+}
+body .reports-query-cont .form-actions input[type=submit].filter-btn {
+  background-color: green;
+  color: white;
+  margin-right: 1rem;
+}
+body .reports-query-cont .form-actions input[type=submit].filter-btn:hover {
+  background-color: rgb(0, 150, 0);
+}
+body .reports-query-cont .form-actions input[type=submit].cancel-btn {
+  background-color: rgb(232, 232, 232);
+  color: black;
+}
+body .reports-query-cont .form-actions input[type=submit].cancel-btn:hover {
+  background-color: rgb(214, 214, 214);
 }
 body .reports-cont {
   background-color: white;

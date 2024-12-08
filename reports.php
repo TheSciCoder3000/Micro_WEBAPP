@@ -39,7 +39,10 @@ $filter_data = filter_query($conn, $filter_type, $filter_value);
 
 <body>
     <nav>
-        <div class="logo-cont"></div>
+        <div class="logo-cont">
+            <img src="./img/dlsud-logo.png" alt="dlsud-logo">
+            <h2>University Thesis Inventory</h2>
+        </div>
         <div class="nav-list">
             <div class="nav-item"><a href="./index.php" class="nav-link">Dashboard</a></div>
             <div class="nav-item"><a href="./register.php" class="nav-link">Register</a></div>
@@ -50,6 +53,7 @@ $filter_data = filter_query($conn, $filter_type, $filter_value);
 
     <form class="reports-query-cont" id="filter-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <div class="filter-select-cont">
+            Filter:
             <select name="filter-type" id="filter-type-select" onchange="onFilterSelectChange(event)">
                 <?php
                 $filter_types = ['all', 'title', 'program', 'author', 'adviser'];
@@ -62,10 +66,14 @@ $filter_data = filter_query($conn, $filter_type, $filter_value);
                 ?>
             </select>
         </div>
+
+        <!-- Title Field -->
         <div style="display: <?php echo $filter_type == 'title' ? 'block' : 'none'; ?>;">
             <label for="title">Title: </label>
-            <input value="<?php echo htmlspecialchars($filter_value ? $filter_value[$filter_type] : ''); ?>" name="title" id="" class="title-input"></input>
+            <input placeholder="Enter Title Name..." value="<?php if (isset($filter_value['title'])) echo htmlspecialchars($filter_value['title']); ?>" name="title" id="" class="title-input"></input>
         </div>
+
+        <!-- Author Field -->
         <div style="display: <?php echo $filter_type == 'author' ? 'block' : 'none'; ?>;">
             <label for="author">Author:</label>
             <div>
@@ -73,6 +81,8 @@ $filter_data = filter_query($conn, $filter_type, $filter_value);
                 <input value="<?php if (isset($filter_value['LAST_NAME'])) echo $filter_value['LAST_NAME']; ?>" type="text" name="author-ln" placeholder="Last Name">
             </div>
         </div>
+
+        <!-- Adviser Field -->
         <div style="display: <?php echo $filter_type == 'adviser' ? 'block' : 'none'; ?>;">
             <label for="author">Adviser:</label>
             <div>
@@ -80,12 +90,14 @@ $filter_data = filter_query($conn, $filter_type, $filter_value);
                 <input value="<?php if (isset($filter_value['LAST_NAME'])) echo $filter_value['LAST_NAME']; ?>" type="text" name="adviser-ln" placeholder="Last Name">
             </div>
         </div>
+
+        <!-- Program Field -->
         <div style="display: <?php echo $filter_type == 'program' ? 'block' : 'none'; ?>;">
             <label for="program">Program:</label>
             <select name="program">
-                <option value <?php echo is_null($filter_value) ? '' : 'selected' ?>>Select Program</option>
+                <option value>Select Program</option>
                 <?php
-                $filter_value = $filter_value[$filter_type];
+                $filter_value = $filter_value['program'];
                 foreach ($PROGRAMS as $key => $program) {
                     if ($filter_value == $key) echo "<option selected value=\"$key\">$program</option>";
                     else echo "<option value=\"$key\">$program</option>";

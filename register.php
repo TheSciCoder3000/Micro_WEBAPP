@@ -19,7 +19,10 @@ require __DIR__ . '/utils/data.php';
 
 <body>
     <nav>
-        <div class="logo-cont"></div>
+        <div class="logo-cont">
+            <img src="./img/dlsud-logo.png" alt="dlsud-logo">
+            <h2>University Thesis Inventory</h2>
+        </div>
         <ul class="nav-list">
             <li class="nav-item"><a href="./index.php" class="nav-link">Dashboard</a></li>
             <li class="nav-item active">Register</li>
