@@ -4,9 +4,9 @@ $PROGRAMS = [
     'CPE' => 'Bachelor of Science in Computer Engineering',
     'MEE' => 'Bachelor of Science in Mechanical Engineering',
     'ECE' => 'Bachelor of Science in Electrical Engineering',
-    'IEE' => 'Bachelor of Science in Industrial Engineering',
+    'IE' => 'Bachelor of Science in Industrial Engineering',
     'CE' => 'Bachelor of Science in Civil Engineering',
-    'MMA' => 'Bachelor of Mechanical Engineering',
+    'MMA' => 'Bachelor of Multimedia Arts',
     'ARC' => 'Bachelor of Science in Architecture',
 ];
 

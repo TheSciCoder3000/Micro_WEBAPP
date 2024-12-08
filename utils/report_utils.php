@@ -1,7 +1,7 @@
 <?php
 
 
-function getFilterValue($filter_type, $data)
+function getFilterValue(String $filter_type, array $data)
 {
     if ($filter_type == 'author') {
         return [
@@ -18,7 +18,7 @@ function getFilterValue($filter_type, $data)
     ];
 }
 
-function filter_query($conn, $filter_type, $filter_value)
+function filter_query($conn, string $filter_type, array|null $filter_value)
 {
     $filter_sql = "";
     if ($filter_type == 'all') {
@@ -82,7 +82,7 @@ function filter_query($conn, $filter_type, $filter_value)
     return $filter_data;
 }
 
-function getFilterColumns($filter_type)
+function getFilterColumns(String $filter_type)
 {
     if ($filter_type == 'title') return [
         'TITLE_ID' => 'Title ID',
