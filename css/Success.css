@@ -6,7 +6,6 @@ body {
   width: 100vw;
   box-sizing: border-box;
   overflow-x: hidden;
-  padding: 2rem 6rem;
   margin: 0;
   font-size: 17px;
 }
@@ -31,6 +30,7 @@ body .alert-container {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 5rem;
+  padding: 2rem 6rem;
 }
 body .alert-container .hero-content {
   flex: 0.8;

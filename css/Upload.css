@@ -1,0 +1,26 @@
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+body .upload-cont {
+  padding: 5rem;
+  display: flex;
+  gap: 5rem;
+  align-items: center;
+}
+body .upload-cont .icon-cont {
+  height: 30rem;
+}
+body .upload-cont .icon-cont svg {
+  height: 100%;
+}
+body .upload-cont form input {
+  display: block;
+  margin-bottom: 2rem;
+}
+body .upload-cont form input[type=submit] {
+  padding: 0.7rem 1rem;
+  border: none;
+  background-color: green;
+  color: white;
+}/*# sourceMappingURL=Upload.css.map */

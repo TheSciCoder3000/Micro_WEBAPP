@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/Success.css">
+    <link rel="stylesheet" href="./css/Navbar.css">
     <title>Registration Successful</title>
 </head>
 <?php
@@ -35,9 +36,22 @@ $contactSql = "SELECT * FROM CONTACT WHERE TITLE_ID = $thesisId;";
 $contactResults = sqlsrv_query($conn, $contactSql);
 $contact = sqlsrv_fetch_array($contactResults);
 
+$pdfsql = "SELECT * FROM PDF_UPLOAD WHERE TITLE_ID = $thesisId;";
+$pdfResult = sqlsrv_query($conn, $pdfsql);
+$pdf = sqlsrv_fetch_array($pdfResult);
+
 ?>
 
 <body>
+    <nav>
+        <div class="logo-cont"></div>
+        <ul class="nav-list">
+            <li class="nav-item"><a href="./index.php" class="nav-link">Dashboard</a></li>
+            <li class="nav-item active">Register</li>
+            <li class="nav-item"><a href="./reports.php" class="nav-link">Reports</a></li>
+        </ul>
+        <div class="accounts-cont"></div>
+    </nav>
     <div class="alert-container">
         <div class="hero-content">
             <h1>Congratulations in <br>Registering your Thesis</h1>
@@ -47,7 +61,13 @@ $contact = sqlsrv_fetch_array($contactResults);
                 adviser for any inquiries or add a new entry by clicking
                 the button below.
             </p>
-            <button class="register" onclick="redirect()">REGISTER</button>
+            <?php
+            if (!is_null($pdf)) {
+                echo "<button class=\"register\" onclick=\"redirect()\">REGISTER</button>";
+            } else {
+                echo "<button class=\"register\" onclick=\"redirectUpload()\">Add Thesis PDF</button>";
+            }
+            ?>
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" width="722.45196" height="364.19648" viewBox="0 0 722.45196 364.19648" xmlns:xlink="http://www.w3.org/1999/xlink">
             <path d="M891.45711,564.13287H342.14841a26.51638,26.51638,0,0,1-26.48658-26.48658V329.2084a26.51674,26.51674,0,0,1,26.48658-26.48658h549.3087a26.51674,26.51674,0,0,1,26.48658,26.48658V537.64629A26.51638,26.51638,0,0,1,891.45711,564.13287Z" transform="translate(-238.77402 -267.90176)" fill="#fff" />
@@ -103,6 +123,10 @@ $contact = sqlsrv_fetch_array($contactResults);
     <script>
         function redirect() {
             window.location.href = "http://localhost/webapp/register.php";
+        }
+
+        function redirectUpload() {
+            window.location.href = "http://localhost/webapp/upload.html";
         }
     </script>
 </body>
