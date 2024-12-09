@@ -1,0 +1,139 @@
+* {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+@font-face {
+    font-family: 'galliardroman';
+    src: url('../fonts/galliard_roman-webfont.woff') format('woff'),
+        url('../fonts/galliard_roman-webfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.search-cont {
+    width: 100vw;
+    overflow-x: hidden;
+    padding-bottom: 5rem;
+
+    .hero-search-cont {
+        width: 100%;
+        position: relative;
+        height: 60vh;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .main-img {
+            transform: translateY(-30rem);
+        }
+
+        .negative-img {
+            position: absolute;
+            z-index: 10;
+            bottom: 0;
+        }
+    }
+
+    .main-search-cont {
+        padding: 5rem 2rem;
+
+        h1 {
+            font-size: 4em;
+            text-align: center;
+            font-family: 'galliardroman';
+            color: rgb(0, 93, 0);
+            font-weight: 400;
+            margin-bottom: 3rem;
+        }
+
+        .search-bar {
+            background-color: white;
+            box-shadow: 2px 1px 9px 3px rgba(0, 0, 0, 0.07);
+            width: 40rem;
+            margin: 0 auto;
+            overflow: hidden;
+            box-sizing: border-box;
+            border-radius: 50px;
+            display: flex;
+
+            input {
+                flex: 1;
+                padding: 0.8rem 2rem;
+                font-size: 1.25em;
+                outline: none;
+                border: none;
+
+                &::placeholder {
+                    color: rgb(201, 201, 201);
+                }
+            }
+
+            #search-bar-form {
+                flex: 1;
+            }
+
+            #search-all-form {
+                margin-right: 2rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                input {
+                    display: block;
+                    padding: 0.25rem 0.5rem;
+                    background-color: rgb(255, 255, 255);
+                    cursor: pointer;
+                    color: rgb(177, 177, 177);
+
+                    &:hover {
+                        color: green;
+                    }
+                }
+            }
+
+        }
+    }
+
+    .search-results-cont {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 4px 0px 10px 5px rgba(0, 0, 0, 0.08);
+        margin: 2rem 7rem;
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+
+            td,
+            th {
+                // border: 1px solid black;
+                padding: 0.9rem 1.5rem;
+                text-align: left;
+            }
+
+            th {
+                background-color: #F9FAFC;
+                color: rgb(72, 72, 72);
+            }
+
+            td {
+                color: rgb(99, 99, 99);
+                border-bottom: 1px solid rgb(224, 224, 224);
+            }
+
+            .td-title-name {
+                max-width: 30rem;
+            }
+
+            .table-row {
+                &:hover {
+                    background-color: rgb(250, 250, 250);
+                }
+            }
+        }
+    }
+}

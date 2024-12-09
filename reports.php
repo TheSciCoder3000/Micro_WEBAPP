@@ -46,7 +46,7 @@ $filter_data = filter_query($conn, $filter_type, $filter_value);
         <div class="nav-list">
             <div class="nav-item"><a href="./index.php" class="nav-link">Dashboard</a></div>
             <div class="nav-item"><a href="./register.php" class="nav-link">Register</a></div>
-            <div class="nav-item active">Reports</div>
+            <div class="nav-item active">Admin</div>
         </div>
         <div class="accounts-cont"></div>
     </nav>

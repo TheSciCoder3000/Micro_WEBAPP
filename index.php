@@ -17,7 +17,7 @@
         <ul class="nav-list">
             <li class="nav-item active">Dashboard</li>
             <li class="nav-item"><a href="./register.php" class="nav-link">Register</a></li>
-            <li class="nav-item"><a href="./reports.php" class="nav-link">Reports</a></li>
+            <li class="nav-item"><a href="./admin.php" class="nav-link">Admin</a></li>
         </ul>
         <div class="accounts-cont"></div>
     </nav>
@@ -32,7 +32,7 @@
                 <img src="./img/search.svg" alt="search-svg">
                 <h2>Search</h2>
                 <p>Search for existing Thesis titles available in the database</p>
-                <button class="panel-btn">Search</button>
+                <button class="panel-btn" onclick="window.location.href = './search.php';">Search</button>
             </div>
             <div class="panel-cont">
                 <img src="./img/forms.svg" alt="search-svg">

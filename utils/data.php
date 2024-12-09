@@ -1,5 +1,12 @@
 <?php
 
+function is_value_empty(String $value)
+{
+    $trimmed_str = trim($value);
+    if ($trimmed_str === null || $trimmed_str == "") return false;
+    return true;
+}
+
 $PROGRAMS = [
     'CPE' => 'Bachelor of Science in Computer Engineering',
     'MEE' => 'Bachelor of Science in Mechanical Engineering',
