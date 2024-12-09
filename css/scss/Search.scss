@@ -58,8 +58,10 @@
             overflow: hidden;
             box-sizing: border-box;
             border-radius: 50px;
+            display: flex;
 
             input {
+                flex: 1;
                 padding: 0.8rem 2rem;
                 font-size: 1.25em;
                 outline: none;
@@ -69,6 +71,30 @@
                     color: rgb(201, 201, 201);
                 }
             }
+
+            #search-bar-form {
+                flex: 1;
+            }
+
+            #search-all-form {
+                margin-right: 2rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                input {
+                    display: block;
+                    padding: 0.25rem 0.5rem;
+                    background-color: rgb(255, 255, 255);
+                    cursor: pointer;
+                    color: rgb(177, 177, 177);
+
+                    &:hover {
+                        color: green;
+                    }
+                }
+            }
+
         }
     }
 

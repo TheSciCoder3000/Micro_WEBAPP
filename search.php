@@ -30,46 +30,49 @@
             <div class="search-bar-cont">
                 <h1>University Thesis Inventory</h1>
                 <div class="search-bar">
-                    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
-                        <input value="<?php if (isset($_POST['search-key'])) echo htmlspecialchars($_POST['search-key']); ?>" type="text" name="search-key" placeholder="Search Thesis Here..." class="search-input" autocomplete="off" required>
+                    <form id="search-bar-form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+                        <input value="<?php if (isset($_POST['search-key'])) echo htmlspecialchars($_POST['search-key'] != 'ALL' ? $_POST['search-key'] : ''); ?>" type="text" name="search-key" placeholder="Search Thesis Here..." class="search-input" autocomplete="off" required>
+                    </form>
+                    <form id="search-all-form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+                        <input type="submit" value="ALL" name="search-key">
                     </form>
                 </div>
             </div>
         </div>
 
-        <div class="search-results-cont">
 
 
 
-            <?php
 
-            require __DIR__ . '/utils/data.php';
-            require __DIR__ . '/utils/search_util.php';
+        <?php
 
-            if (isset($_POST['search-key']) && is_value_empty($_POST['search-key'])) {
-                $search_value = $_POST['search-key'];
-                $search_results = getSearchData($search_value);
+        require __DIR__ . '/utils/data.php';
+        require __DIR__ . '/utils/search_util.php';
 
-                echo "<table>";
+        if (isset($_POST['search-key']) && is_value_empty($_POST['search-key'])) {
+            $search_value = $_POST['search-key'];
+            $search_results = getSearchData($search_value);
 
-                echo "<thead>
+            echo "<div class=\"search-results-cont\"><table>";
+
+            echo "<thead>
                         <tr>
                             <th>THESIS ID</th>
                             <th>TITLE NAME</th>
+                            <th>PROGRAM</th>
                             <th>LAST NAME</th>
                             <th>FIRST NAME</th>
                         </tr>
                     </thead>";
 
-                echo "<tbody>";
-                getTableBody($search_results);
-                echo "</tbody>";
+            echo "<tbody>";
+            getTableBody($search_results);
+            echo "</tbody>";
 
-                echo "</table>";
-            }
+            echo "</table></div>";
+        }
 
-            ?>
-        </div>
+        ?>
 
     </div>
 </body>
