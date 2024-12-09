@@ -52,8 +52,10 @@
   overflow: hidden;
   box-sizing: border-box;
   border-radius: 50px;
+  display: flex;
 }
 .search-cont .main-search-cont .search-bar input {
+  flex: 1;
   padding: 0.8rem 2rem;
   font-size: 1.25em;
   outline: none;
@@ -64,6 +66,25 @@
 }
 .search-cont .main-search-cont .search-bar input::placeholder {
   color: rgb(201, 201, 201);
+}
+.search-cont .main-search-cont .search-bar #search-bar-form {
+  flex: 1;
+}
+.search-cont .main-search-cont .search-bar #search-all-form {
+  margin-right: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.search-cont .main-search-cont .search-bar #search-all-form input {
+  display: block;
+  padding: 0.25rem 0.5rem;
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+  color: rgb(177, 177, 177);
+}
+.search-cont .main-search-cont .search-bar #search-all-form input:hover {
+  color: green;
 }
 .search-cont .search-results-cont {
   background-color: white;
