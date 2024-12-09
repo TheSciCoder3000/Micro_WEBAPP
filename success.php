@@ -48,7 +48,7 @@ $pdf = sqlsrv_fetch_array($pdfResult);
         <ul class="nav-list">
             <li class="nav-item"><a href="./index.php" class="nav-link">Dashboard</a></li>
             <li class="nav-item active">Register</li>
-            <li class="nav-item"><a href="./reports.php" class="nav-link">Reports</a></li>
+            <li class="nav-item"><a href="./admin.php" class="nav-link">Admin</a></li>
         </ul>
         <div class="accounts-cont"></div>
     </nav>
