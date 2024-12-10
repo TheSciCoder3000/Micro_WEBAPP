@@ -85,11 +85,66 @@
             </svg>
         </div>
         <form enctype="multipart/form-data" action="upload_util.php" method="post">
-            <h1>Upload your PDF File</h1>
-            <input type="file" name="file" id="file">
+            <h1>Upload your PDF Files</h1>
+            <div class="drop-zone">
+                <h3>Drop or upload your <b>Chapter 1</b> Files here</h3>
+                <input type="file" name="file-1" id="file-chap-1" class="input__file" accept="application/pdf" required>
+            </div>
+            <div class="drop-zone">
+                <h3>Drop or upload your <b>Full Manuscript</b> Files here</h3>
+                <input type="file" name="file-full" id="file-full" class="input__file" accept="application/pdf"
+                    required>
+            </div>
             <input type="submit" value="Upload PDF" name="submit">
         </form>
     </div>
+
+    <script>
+        document.querySelectorAll('.input__file').forEach(inputEl => {
+            let dropZoneEl = inputEl.closest('.drop-zone');
+            let dropzoneHeader = inputEl.previousElementSibling;
+
+            dropZoneEl.addEventListener('click', e => {
+                inputEl.click();
+            })
+            dropZoneEl.addEventListener('dragover', e => {
+                e.preventDefault();
+                dropZoneEl.classList.add('drag-over');
+            })
+            dropZoneEl.addEventListener('dragleave', e => {
+                e.preventDefault();
+                dropZoneEl.classList.remove('drag-over');
+            });
+            dropZoneEl.addEventListener('dragend', e => {
+                e.preventDefault();
+                dropZoneEl.classList.remove('drag-over');
+            });
+            dropZoneEl.addEventListener('drop', e => {
+                e.preventDefault();
+                if (e.dataTransfer.files.length && e.dataTransfer.files[0].type == "application/pdf") {
+                    let data = new DataTransfer();
+                    data.items.add(e.dataTransfer.files[0])
+                    inputEl.files = data.files
+                    dropZoneEl.classList.add('valid');
+                    dropzoneHeader.innerHTML = `<b>File: </b>${inputEl.files[0].name}`;
+                } else {
+                    dropZoneEl.classList.remove('drag-over');
+                }
+            });
+
+            inputEl.addEventListener('change', e => {
+                if (e.target.files.length && e.target.files[0].type == "application/pdf") {
+                    let data = new DataTransfer();
+                    data.items.add(e.target.files[0])
+                    inputEl.files = data.files
+                    dropZoneEl.classList.add('valid');
+                    dropzoneHeader.innerHTML = `<b>File: </b>${inputEl.files[0].name}`;
+                } else {
+                    dropZoneEl.classList.remove('drag-over');
+                }
+            })
+        });
+    </script>
 </body>
 
 </html>
