@@ -17,7 +17,7 @@
         <ul class="nav-list">
             <li class="nav-item active">Dashboard</li>
             <li class="nav-item"><a href="./register.php" class="nav-link">Register</a></li>
-            <li class="nav-item"><a href="./admin.php" class="nav-link">Admin</a></li>
+            <li class="nav-item"><a href="./login.php" class="nav-link">Admin</a></li>
         </ul>
         <div class="accounts-cont"></div>
     </nav>
