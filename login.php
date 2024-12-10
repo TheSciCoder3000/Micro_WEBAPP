@@ -8,6 +8,32 @@
     <title>Login</title>
 </head>
 
+<?php
+if (isset($_POST['submit'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $hashed_password = md5($password);
+
+    $serverName = "NeurosLaptop\SQLEXPRESS";
+
+    $connectionOptions = [
+        "Database" => "WEBAPP",
+        "Uid" => "",
+        "PWD" => ""
+    ];
+
+    $conn = sqlsrv_connect($serverName, $connectionOptions);
+
+    $login_sql = "SELECT * FROM ADMIN_LOGIN WHERE USERNAME = '$username' AND PASSWORD = '$hashed_password'";
+    $login_res = sqlsrv_query($conn, $login_sql);
+    $logins = sqlsrv_fetch_array($login_res);
+
+    if (isset($logins['USERID'])) {
+        header('Location: reports.php');
+    }
+}
+?>
+
 <body>
     <svg class="eclipse-bl" width="550" height="491" viewBox="0 0 550 491" fill="none" xmlns="http://www.w3.org/2000/svg">
         <ellipse cx="163.533" cy="372.97" rx="415.428" ry="339.59" transform="rotate(-39.8844 163.533 372.97)" fill="#1FAB89" />
@@ -29,22 +55,40 @@
                     Back
                 </button>
             </div>
-            <form action="" method="post">
+            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
                 <h1>Login</h1>
                 <div class="field-cont">
-                    <input type="text" id="username" name="username" required>
+                    <input type="text" id="username" name="username" autocomplete="off" required>
                     <label for="username">Username</label>
                     <div class="underline"></div>
                 </div>
                 <div class="field-cont">
-                    <input type="password" id="password" name="password" required>
+                    <input type="password" id="password" name="password" autocomplete="off" required>
                     <label for="password">Password</label>
                     <div class="underline"></div>
+                    <button onclick="showPassword()" type="button" class="show-btn" id="show-btn">
+                        show
+                    </button>
                 </div>
                 <input type="submit" name="submit" value="LOGIN">
             </form>
         </div>
     </div>
+
+    <script>
+        function showPassword() {
+            let passwordInput = document.getElementById('password');
+            let isShown = passwordInput.getAttribute('type') == 'text';
+            if (isShown) {
+                passwordInput.setAttribute('type', 'password');
+                document.getElementById('show-btn').classList.remove('active');
+            } else {
+                passwordInput.setAttribute('type', 'text');
+                document.getElementById('show-btn').classList.add('active');
+            }
+
+        }
+    </script>
 </body>
 
 </html>

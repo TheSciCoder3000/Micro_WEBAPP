@@ -23,20 +23,20 @@ body {
 
     .login-modal {
         display: flex;
-        gap: 1.5rem;
+        gap: 1rem;
         position: relative;
         z-index: 10;
         background-color: white;
         border-radius: 10px;
         padding: 1rem;
         $margin-y: 3rem;
-        margin: calc($margin-y) 13rem;
+        margin: calc($margin-y) 10rem;
         box-sizing: border-box;
         height: calc(100% - calc($margin-y * 2));
         box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.08);
 
         .img-cont {
-            flex: 1;
+            flex: 1.25;
             overflow: hidden;
             border-radius: 15px;
 
@@ -48,8 +48,8 @@ body {
         }
 
         .login-form-cont {
-            flex: 0.8;
-            padding: 0 4rem;
+            flex: 1;
+            padding: 0 1rem;
 
             .form-navigation {
                 margin-top: 1rem;
@@ -63,95 +63,120 @@ body {
                     align-items: center;
                     font-size: 1.1em;
                     cursor: pointer;
+                    color: rgb(166, 166, 166);
 
                     svg {
                         width: 1rem;
                         aspect-ratio: 1/1;
+                        fill: rgb(166, 166, 166);
                     }
 
                     &:hover {
                         color: green;
-                        fill: green;
+
+                        svg {
+                            fill: green;
+                        }
                     }
                 }
             }
 
-            h1 {
-                text-align: center;
-                font-size: 2.75em;
-                margin: 3rem 0 5.5rem 0;
-            }
+            form {
+                padding: 0 2.5rem;
 
-            .field-cont {
-                position: relative;
-                margin-bottom: 2.5rem;
-
-                input {
-                    width: 100%;
-                    font-size: 1.2em;
-                    padding: 0.5rem 0.5rem;
-                    border: none;
-                    border-bottom: 2px solid rgb(192, 192, 192);
-                    outline: none;
-
-                    &:focus~label,
-                    &:valid~label {
-                        transform: translateY(-2rem);
-                        font-size: 0.9em;
-                        color: green;
-                    }
-
-                    &:focus~.underline::before,
-                    &:valid~.underline::before {
-                        transform: scaleX(100%);
-                    }
+                h1 {
+                    text-align: center;
+                    font-size: 2.75em;
+                    margin: 3rem 0 5.5rem 0;
                 }
 
-                label {
-                    font-size: 1.2em;
-                    position: absolute;
-                    left: 0.5rem;
-                    bottom: 0.5rem;
-                    transition: all 0.3s ease;
-                    cursor: text;
-                    color: rgb(192, 192, 192);
-                }
+                .field-cont {
+                    position: relative;
+                    margin-bottom: 2.5rem;
 
-                .underline {
-                    position: absolute;
-                    bottom: 0px;
-                    height: 2px;
-                    width: 100%;
-
-                    &::before {
-                        position: absolute;
-                        content: "";
-                        height: 100%;
+                    input {
                         width: 100%;
-                        transform: scaleX(0);
-                        background-color: green;
-                        transition: transform 0.1s ease;
+                        font-size: 1.2em;
+                        padding: 0.5rem 0.5rem;
+                        border: none;
+                        border-bottom: 2px solid rgb(192, 192, 192);
+                        outline: none;
+
+                        &:focus~label,
+                        &:valid~label {
+                            transform: translateY(-2rem);
+                            font-size: 0.9em;
+                            color: green;
+                        }
+
+                        &:focus~.underline::before,
+                        &:valid~.underline::before {
+                            transform: scaleX(100%);
+                        }
+                    }
+
+                    label {
+                        font-size: 1.2em;
+                        position: absolute;
+                        left: 0.5rem;
+                        bottom: 0.5rem;
+                        transition: all 0.3s ease;
+                        cursor: text;
+                        color: rgb(192, 192, 192);
+                    }
+
+                    .underline {
+                        position: absolute;
+                        bottom: 0px;
+                        height: 2px;
+                        width: 100%;
+
+                        &::before {
+                            position: absolute;
+                            content: "";
+                            height: 100%;
+                            width: 100%;
+                            transform: scaleX(0);
+                            background-color: green;
+                            transition: transform 0.1s ease;
+                        }
+                    }
+
+                    .show-btn {
+                        position: absolute;
+                        right: 0;
+                        outline: none;
+                        border: none;
+                        background-color: transparent;
+                        bottom: 0.5rem;
+                        cursor: pointer;
+                        color: rgb(197, 197, 197);
+
+                        &.active {
+                            color: green;
+                        }
                     }
                 }
-            }
 
-            input[type=submit] {
-                font-size: 1.1em;
-                font-weight: 600;
-                display: block;
-                width: 100%;
-                padding: 1rem 1.5rem;
-                margin-top: 4rem;
-                border-radius: 5px;
-                box-shadow: 0px 2px 10px 5px rgba(0, 0, 0, 0.08);
-                border: none;
-                background-color: green;
-                color: white;
-                cursor: pointer;
+                input[type=submit] {
+                    font-size: 1.1em;
+                    font-weight: 600;
+                    display: block;
+                    width: 100%;
+                    padding: 1rem 1.5rem;
+                    margin-top: 4rem;
+                    border-radius: 5px;
+                    box-shadow: 0px 2px 10px 5px rgba(0, 0, 0, 0.08);
+                    border: none;
+                    background-color: green;
+                    color: white;
+                    cursor: pointer;
 
-                &:hover {
-                    background-color: rgb(0, 144, 0);
+                    &:hover {
+                        background-color: rgb(0, 144, 0);
+                    }
                 }
+
             }
         }
     }
