@@ -36,9 +36,15 @@ $contactSql = "SELECT * FROM CONTACT WHERE TITLE_ID = $thesisId;";
 $contactResults = sqlsrv_query($conn, $contactSql);
 $contact = sqlsrv_fetch_array($contactResults);
 
-$pdfsql = "SELECT * FROM PDF_UPLOAD WHERE TITLE_ID = $thesisId;";
-$pdfResult = sqlsrv_query($conn, $pdfsql);
-$pdf = sqlsrv_fetch_array($pdfResult);
+$pdfsql_1 = "SELECT * FROM PDF_ABSTRACT WHERE TITLE_ID = $thesisId;";
+$pdfResult_1 = sqlsrv_query($conn, $pdfsql_1);
+$pdf_1 = sqlsrv_fetch_array($pdfResult_1);
+
+$pdfsql_full = "SELECT * FROM PDF_FULL WHERE TITLE_ID = $thesisId;";
+$pdfResult_full = sqlsrv_query($conn, $pdfsql_full);
+$pdf_full = sqlsrv_fetch_array($pdfResult_full);
+
+$pdf = $pdf_1 && $pdf_full;
 
 ?>
 
@@ -62,7 +68,7 @@ $pdf = sqlsrv_fetch_array($pdfResult);
                 the button below.
             </p>
             <?php
-            if (!is_null($pdf)) {
+            if ($pdf) {
                 echo "<button class=\"register\" onclick=\"redirect()\">REGISTER</button>";
             } else {
                 echo "<button class=\"register\" onclick=\"redirectUpload()\">Add Thesis PDF</button>";
