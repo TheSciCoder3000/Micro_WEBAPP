@@ -73,6 +73,7 @@ function getTableBody(array $search_results)
                     <input type=\"submit\" value=\"View\">
                 </form>
             </td>");
+        else print_r("<td></td>");
         echo "</tr>";
     }
 }
