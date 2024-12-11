@@ -123,6 +123,20 @@
             td {
                 color: rgb(99, 99, 99);
                 border-bottom: 1px solid rgb(224, 224, 224);
+
+                form {
+                    input[type=submit] {
+                        border: none;
+                        background-color: transparent;
+                        color: rgb(164, 164, 164);
+                        cursor: pointer;
+
+                        &:hover {
+                            color: rgb(41, 41, 255);
+                            text-decoration: underline;
+                        }
+                    }
+                }
             }
 
             .td-title-name {

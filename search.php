@@ -62,6 +62,7 @@
                             <th>PROGRAM</th>
                             <th>LAST NAME</th>
                             <th>FIRST NAME</th>
+                            <th></th>
                         </tr>
                     </thead>";
 
