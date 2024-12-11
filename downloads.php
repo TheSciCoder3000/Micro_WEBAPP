@@ -54,7 +54,7 @@
 
         if (isset($_POST['search-key']) && is_value_empty($_POST['search-key'])) {
             $search_value = $_POST['search-key'];
-            $search_results = getSearchData($search_value);
+            $search_results = getSearchDownloadData($search_value);
 
             echo "<div class=\"search-results-cont\"><table>";
 
@@ -65,6 +65,7 @@
                             <th>PROGRAM</th>
                             <th>LAST NAME</th>
                             <th>FIRST NAME</th>
+                            <th></th>
                         </tr>
                     </thead>";
 
