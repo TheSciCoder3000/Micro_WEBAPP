@@ -17,7 +17,7 @@
   color: rgb(101, 101, 101);
   text-decoration: none;
 }
-.admin-navigation .nav-items h2:hover {
+.admin-navigation .nav-items h2:not(.active):hover {
   background-color: rgb(240, 240, 240);
 }
 .admin-navigation hr {
