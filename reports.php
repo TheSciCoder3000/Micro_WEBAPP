@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/Navbar.css">
+    <link rel="stylesheet" href="css/AdminNav.css">
     <link rel="stylesheet" href="css/Reports.css">
     <title>Reports</title>
 </head>
@@ -50,6 +51,14 @@ $filter_data = filter_query($conn, $filter_type, $filter_value);
         </div>
         <div class="accounts-cont"></div>
     </nav>
+
+    <div class="admin-navigation">
+        <div class="nav-items">
+            <h2 class="active">Reports</h2>
+            <h2><a href="./downloads.php">Downloads</a></h2>
+        </div>
+        <hr>
+    </div>
 
     <form class="reports-query-cont" id="filter-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <div class="filter-select-cont">
