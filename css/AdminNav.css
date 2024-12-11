@@ -7,6 +7,7 @@
 .admin-navigation .nav-items h2 {
   padding: 0.5rem 1rem;
   font-weight: 400;
+  font-size: 1.25em;
 }
 .admin-navigation .nav-items h2.active {
   background-color: green;
@@ -15,6 +16,9 @@
 .admin-navigation .nav-items h2 a {
   color: rgb(101, 101, 101);
   text-decoration: none;
+}
+.admin-navigation .nav-items h2:hover {
+  background-color: rgb(240, 240, 240);
 }
 .admin-navigation hr {
   border: none;

@@ -133,3 +133,23 @@ function getTableBody(array $search_results)
         echo "</tr>";
     }
 }
+function getTableDownloadsBody(array $search_results)
+{
+
+    foreach ($search_results as $res) {
+        echo "<tr class=\"table-row\">";
+        print_r("<td>" . $res['TITLE_ID'] . "</td>");
+        print_r("<td class=\"td-title-name\">" . $res['TITLE_NAME'] . "</td>");
+        print_r("<td>" . $res['PROGRAM'] . "</td>");
+        print_r("<td>" . $res['LAST_NAME'] . "</td>");
+        print_r("<td>" . $res['FIRST_NAME'] . "</td>");
+        if ($res['PDF_PATH'] != null) print_r("<td>
+                <form action=\"download_file.php\" method=\"post\">
+                    <input type=\"hidden\" name=\"file-path\" value=\"" . $res['PDF_PATH'] . "\">
+                    <input type=\"submit\" value=\"Download\">
+                </form>
+            </td>");
+        else print_r("<td></td>");
+        echo "</tr>";
+    }
+}

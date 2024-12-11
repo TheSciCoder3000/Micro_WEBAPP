@@ -7,6 +7,7 @@
         h2 {
             padding: 0.5rem 1rem;
             font-weight: 400;
+            font-size: 1.25em;
 
             &.active {
                 background-color: green;
@@ -16,6 +17,10 @@
             a {
                 color: rgb(101, 101, 101);
                 text-decoration: none;
+            }
+
+            &:hover {
+                background-color: rgb(240, 240, 240);
             }
         }
     }

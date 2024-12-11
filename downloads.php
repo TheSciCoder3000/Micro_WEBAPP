@@ -70,7 +70,7 @@
                     </thead>";
 
             echo "<tbody>";
-            getTableBody($search_results);
+            getTableDownloadsBody($search_results);
             echo "</tbody>";
 
             echo "</table></div>";
