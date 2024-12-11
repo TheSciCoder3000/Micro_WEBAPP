@@ -17,7 +17,7 @@ function getSearchData(String $searchKey)
     $sql = null;
 
     if ($search_key == "ALL") {
-        $sql = "SELECT T.TITLE_ID, T.TITLE_NAME, T.PROGRAM, a.LAST_NAME, a.FIRST_NAME FROM TITLE AS T
+        $sql = "SELECT T.TITLE_ID, T.TITLE_NAME, T.PROGRAM, a.LAST_NAME, a.FIRST_NAME, PA.PDF_PATH FROM TITLE AS T
             INNER JOIN AUTHOR AS a ON t.TITLE_ID = a.TITLE_ID 
             INNER JOIN (
                 SELECT TITLE_ID, MIN(AUTHOR_ID) AS FIRST_ID 
@@ -27,9 +27,11 @@ function getSearchData(String $searchKey)
             ON AD.TITLE_ID = T.TITLE_ID
             INNER JOIN CO_ADVISER AS CO
             ON CO.TITLE_ID = T.TITLE_ID
+            LEFT OUTER JOIN PDF_ABSTRACT AS PA
+            ON PA.TITLE_ID = T.TITLE_ID
             ";
     } else {
-        $sql = "SELECT T.TITLE_ID, T.TITLE_NAME, T.PROGRAM, a.LAST_NAME, a.FIRST_NAME FROM TITLE AS T
+        $sql = "SELECT T.TITLE_ID, T.TITLE_NAME, T.PROGRAM, a.LAST_NAME, a.FIRST_NAME, PA.PDF_PATH FROM TITLE AS T
             INNER JOIN AUTHOR AS a ON t.TITLE_ID = a.TITLE_ID 
             INNER JOIN (
                 SELECT TITLE_ID, MIN(AUTHOR_ID) AS FIRST_ID 
@@ -39,6 +41,8 @@ function getSearchData(String $searchKey)
             ON AD.TITLE_ID = T.TITLE_ID
             INNER JOIN CO_ADVISER AS CO
             ON CO.TITLE_ID = T.TITLE_ID
+            LEFT OUTER JOIN PDF_ABSTRACT AS PA
+            ON PA.TITLE_ID = T.TITLE_ID
 
             WHERE T.TITLE_NAME LIKE '%$search_key%' OR a.LAST_NAME LIKE '%$search_key%' OR a.FIRST_NAME LIKE '%$search_key%' OR T.PROGRAM LIKE '%$search_key%'
             ";
