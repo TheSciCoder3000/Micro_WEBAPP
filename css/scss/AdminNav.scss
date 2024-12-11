@@ -1,0 +1,32 @@
+.admin-navigation {
+    margin: 2rem 5rem;
+
+    .nav-items {
+        display: flex;
+
+        h2 {
+            padding: 0.5rem 1rem;
+            font-weight: 400;
+            font-size: 1.25em;
+
+            &.active {
+                background-color: green;
+                color: white;
+            }
+
+            a {
+                color: rgb(101, 101, 101);
+                text-decoration: none;
+            }
+
+            &:hover {
+                background-color: rgb(240, 240, 240);
+            }
+        }
+    }
+
+    hr {
+        border: none;
+        border-bottom: 1px solid green;
+    }
+}

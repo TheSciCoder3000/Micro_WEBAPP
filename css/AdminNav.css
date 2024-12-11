@@ -1,0 +1,26 @@
+.admin-navigation {
+  margin: 2rem 5rem;
+}
+.admin-navigation .nav-items {
+  display: flex;
+}
+.admin-navigation .nav-items h2 {
+  padding: 0.5rem 1rem;
+  font-weight: 400;
+  font-size: 1.25em;
+}
+.admin-navigation .nav-items h2.active {
+  background-color: green;
+  color: white;
+}
+.admin-navigation .nav-items h2 a {
+  color: rgb(101, 101, 101);
+  text-decoration: none;
+}
+.admin-navigation .nav-items h2:hover {
+  background-color: rgb(240, 240, 240);
+}
+.admin-navigation hr {
+  border: none;
+  border-bottom: 1px solid green;
+}/*# sourceMappingURL=AdminNav.css.map */

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/Navbar.css">
+    <link rel="stylesheet" href="css/AdminNav.css">
     <link rel="stylesheet" href="css/Search.css">
     <title>Search for Thesis</title>
 </head>
@@ -17,18 +18,20 @@
         <ul class="nav-list">
             <li class="nav-item"><a href="./index.php" class="nav-link">Dashboard</a></li>
             <li class="nav-item"><a href="./register.php" class="nav-link">Register</a></li>
-            <li class="nav-item"><a href="./login.php" class="nav-link">Admin</a></li>
+            <li class="nav-item active">Admin</li>
         </ul>
         <div class="accounts-cont"></div>
     </nav>
-    <div class="search-cont">
-        <div class="hero-search-cont">
-            <img class="negative-img" src="./img/negative-bkg.png" alt="">
-            <img class="main-img" src="./img/library-bkg.png" alt="">
+    <div class="admin-navigation">
+        <div class="nav-items">
+            <h2><a href="./reports.php">Reports</a></h2>
+            <h2 class="active">Downloads</h2>
         </div>
+        <hr>
+    </div>
+    <div class="search-cont">
         <div class="main-search-cont">
             <div class="search-bar-cont">
-                <h1>University Thesis Inventory</h1>
                 <div class="search-bar">
                     <form id="search-bar-form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
                         <input value="<?php if (isset($_POST['search-key'])) echo htmlspecialchars($_POST['search-key'] != 'ALL' ? $_POST['search-key'] : ''); ?>" type="text" name="search-key" placeholder="Search Thesis Here..." class="search-input" autocomplete="off" required>
@@ -51,7 +54,7 @@
 
         if (isset($_POST['search-key']) && is_value_empty($_POST['search-key'])) {
             $search_value = $_POST['search-key'];
-            $search_results = getSearchData($search_value);
+            $search_results = getSearchDownloadData($search_value);
 
             echo "<div class=\"search-results-cont\"><table>";
 
@@ -67,7 +70,7 @@
                     </thead>";
 
             echo "<tbody>";
-            getTableBody($search_results);
+            getTableDownloadsBody($search_results);
             echo "</tbody>";
 
             echo "</table></div>";
