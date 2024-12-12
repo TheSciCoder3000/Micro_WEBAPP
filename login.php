@@ -9,6 +9,7 @@
 </head>
 
 <?php
+$login_error = "";
 if (isset($_POST['submit'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -30,6 +31,8 @@ if (isset($_POST['submit'])) {
 
     if (isset($logins['USERID'])) {
         header('Location: reports.php');
+    } else {
+        $login_error = "Incorrect username or password";
     }
 }
 ?>
@@ -70,6 +73,9 @@ if (isset($_POST['submit'])) {
                         show
                     </button>
                 </div>
+                <?php if ($login_error != "") echo "
+                    <p class='error-login'>$login_error</p>
+                "; ?>
                 <input type="submit" name="submit" value="LOGIN">
             </form>
         </div>
