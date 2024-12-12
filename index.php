@@ -42,9 +42,9 @@
             </div>
             <div class="panel-cont">
                 <img src="./img/reports.svg" alt="search-svg">
-                <h2>Reports</h2>
+                <h2>Admin</h2>
                 <p>View and analyze the public Thesis reports</p>
-                <button class="panel-btn" onclick="window.location.href = './reports.php';">Reports</button>
+                <button class="panel-btn" onclick="window.location.href = './login.php';">Admin</button>
             </div>
         </div>
     </div>
